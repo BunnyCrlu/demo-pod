@@ -11,6 +11,7 @@ services:
       - frontend
     build:
       context: ./nginx
+    image: demo-pod:nginx
     volumes:
       - static_content:/var/www/html
     ports:
@@ -20,6 +21,7 @@ services:
     hostname: backend
     build:
       context: ./backend
+    image: demo-pod:backend
     volumes:
       - php_sessions:/tmp/php/sessions:rw
       - backend_logs:/var/log/backend
@@ -29,6 +31,7 @@ services:
     hostname: frontend
     build:
       context: ./frontend
+    image: demo-pod:frontend
     volumes:
       - static_content:/opt/frontend
 
@@ -36,6 +39,7 @@ services:
     hostname: monitor
     build:
       context: ./monitor
+    image: demo-pod:monitor
     links:
       - backend
     volumes:
